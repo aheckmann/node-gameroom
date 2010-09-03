@@ -20,14 +20,15 @@ var app = module.exports = express.createServer(
 app.configure(function(){
   app.set('views', __dirname + '/views')
 })
-.error(function(err, req, res, next){
+
+app.error(function(err, req, res, next){
   console.dir(err)
   if (!err || 2 !== err.errno)
-    return res.render("500.jade", function(err, content){
-      res.send(content || "uhh, Look over there!", 500)  
+    return res.render("500.jade", { layout: "layout.error.jade" }, function(err, content){
+      res.send(content || "Internal Server Error", 500)  
     })
-  res.render("404.jade", { layout: false }, function(err, content){
-    res.send(content || "aaaaaah!! I've been shot!", 404)  
+  res.render("404.jade", { layout: "layout.error.jade" }, function(err, content){
+    res.send(content || "File Not Found", 404)  
   })
 })
 
@@ -36,6 +37,6 @@ require("./lib/sockets")
 
 // never crash
 process.on("uncaughtException", function(err){
-  console.warn("Caught unhandled exception:")
+  console.warn("caught unhandled exception:")
   console.warn(err.stack || err)    
 })
