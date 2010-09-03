@@ -18,7 +18,7 @@
 
   room.doc = $(document)
 
-  socket = room.socket = new io.Socket(location.hostname)
+  var socket = room.socket = new io.Socket(location.hostname)
   socket.connect()
   socket.on("message", function(message){
     var decoded = room.decode ? room.decode(message) : message
