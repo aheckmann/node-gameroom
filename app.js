@@ -2,10 +2,8 @@
 require.paths.unshift(
   __dirname + '/support/express/support/connect/lib/'
 , __dirname + '/support/express/support/jade/lib/'
-, __dirname + '/support/redis-node-client/lib'
 , __dirname + '/support/connect-auth/lib'
 , __dirname + '/support/node-oauth/lib'
-, __dirname + '/support/node-formidable/lib/formidable/'
 )
 
 var express = require('./support/express')
