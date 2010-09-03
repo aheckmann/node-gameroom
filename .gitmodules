@@ -1,0 +1,9 @@
+[submodule "public/js/socketio"]
+	path = public/js/socketio
+	url = git://github.com/LearnBoost/Socket.IO.git
+[submodule "support/express"]
+	path = support/express
+	url = http://github.com/visionmedia/express.git
+[submodule "support/socketio"]
+	path = support/socketio
+	url = git://github.com/LearnBoost/Socket.IO-node.git
