@@ -18,18 +18,11 @@ var app = module.exports = express.createServer(
 )
 
 app.configure(function(){
-  app.set('views', __dirname + '/views')
-})
-
-app.error(function(err, req, res, next){
-  console.dir(err)
-  if (!err || 2 !== err.errno)
-    return res.render("500.jade", { layout: "layout.error.jade" }, function(err, content){
-      res.send(content || "Internal Server Error", 500)  
-    })
-  res.render("404.jade", { layout: "layout.error.jade" }, function(err, content){
-    res.send(content || "File Not Found", 404)  
-  })
+  app.set("views", __dirname + "/views")
+  app.set("game duration", 60)
+  app.set("game max players", 10)
+  app.set("game min players", 2)
+  app.set("game countdown duration", 10)
 })
 
 require("./lib/routes")
