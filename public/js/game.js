@@ -37,6 +37,12 @@
     }
     socket.send(encoded)
   }
+
+  room.join = function(){
+    // yes, socket.send not room.send. once joined, then room.send is always used.
+    // todo, clean that up
+    socket.send("join")
+  }
  
   // the flash transport whines if sending msgs too fast
   // but we seem to be able to safely ignore those
