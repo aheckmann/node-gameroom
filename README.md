@@ -14,6 +14,7 @@ Excludes
 
 
 ## Serverside
+// ...
 
 
 ## Clientside
@@ -34,11 +35,12 @@ Received messages are auto decoded and triggered on document so you can simply b
 
 There are a number of Node-Gameroom provided events to help you get your games started.
 
-clientside
+Client-side events
 * gamejoin
 * gamestatus
 * gamecountdown
 * gamestart
 * gametimer
 
-serverside
+Server-side events
+// ...
