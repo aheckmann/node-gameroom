@@ -1,4 +1,11 @@
 h1 This is a game room
+p Open me in two browser windows.
+#log
 script
-  | jQuery(document).bind("gameplayerid gamejoin gamecountdown gamestart gametimer gameover", function(){ console.log(arguments) });
-  | room.join()
+  | ;(function(){
+  |   var log = $("#log");
+  |   jQuery(document).bind("gameplayerid gamejoin gamecountdown gamestart gametimer gameover", function(event){ 
+  |     log.prepend("<div><b>"+ event.type + "</b>: " + Array.prototype.slice.call(arguments, 1).join(", ") + "</div>") 
+  |   });
+  |   room.join()
+  | })()
