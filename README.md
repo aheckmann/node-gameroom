@@ -1,5 +1,5 @@
 # Node-Gameroom
-Basic starter kit for creating realtime web-based games with nodejs.
+My basic starter kit for creating realtime web-based games with nodejs.
 
 Includes
 - Bugs - this is alpha baby!
