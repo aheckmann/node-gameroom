@@ -13,6 +13,8 @@ My basic starter kit for creating realtime web-based games with nodejs.
 
   - Any database support. The choice is yours.
 
+# Example
+Clone the project and run `sudo node server.js`. Then navigate to `http://0.0.0.0/` and click Play.
 
 ## Serverside
 // ...
