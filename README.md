@@ -7,7 +7,7 @@ My basic starter kit for creating realtime web-based games with nodejs.
   - Express for handling your sites content
   - Socket.io for mananging your games realtime events and data
   - jQuery
-  - Tiny client-side helper lib to simplify encoding/decoding and message passing
+  - Tiny client-side helper lib to simplify encoding/decoding and message passing (no JSON which is slow IMO)
 
   Excludes
 
