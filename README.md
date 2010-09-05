@@ -1,17 +1,15 @@
 # Node-Gameroom
-
-What you need to get started creating realtime web-based games with nodejs.
+Basic starter kit for creating realtime web-based games with nodejs.
 
 Includes
-* Bugs - this is alpha baby!
-* Express for handling your sites content
-* Socket.io for mananging your games realtime events and data
-* jQuery
-* Tiny client-side helper lib to simplify encoding/decoding and message passing
-//* oAuth to let your users sign in easily
+- Bugs - this is alpha baby!
+- Express for handling your sites content
+- Socket.io for mananging your games realtime events and data
+- jQuery
+- Tiny client-side helper lib to simplify encoding/decoding and message passing
 
 Excludes
-* Any database support. The choice is yours.
+- Any database support. The choice is yours.
 
 
 ## Serverside
@@ -36,21 +34,21 @@ Received messages are auto decoded and triggered on document so you can simply b
 
 There are a number of Node-Gameroom provided events to help you get your games started.
 
-Client-side events
-* gameplayerid(uid) 
-  - uid: unique id of the current player
-* gamejoin(uid, totalPlayers)
-  - uid: unique id of player that just joined (could be same as gameplayerid)
-  - totalPlayers: total number of players in the gameroom
-* gamecountdown(count)
-  - count: (int)
-* gamestart
-* gametimer(timer)
-  - timer: (int) sent once per second
-* gameover
+  - Client-side events
+    - gameplayerid(uid) 
+      - uid: unique id of the current player
+    - gamejoin(uid, totalPlayers)
+      - uid: unique id of player that just joined (could be same as gameplayerid)
+      - totalPlayers: total number of players in the gameroom
+    - gamecountdown(count)
+      - count: (int)
+    - gamestart
+    - gametimer(timer)
+      - timer: (int) sent once per second
+    - gameover
 
-Server-side events
-// ...
+  - Server-side events
+    - // ...
 
 
 If you want to track the number of players in a gameroom, just listen for the `gamejoin` event. Every player that joins
