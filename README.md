@@ -23,6 +23,8 @@ My basic starter kit for creating realtime web-based games with nodejs.
 There is a global `room` object you use to send/recieve events from the server
 to notify other players etc.
 
+`room.join()` Joins a gameroom
+
 `room.send(message)` Encodes message and sends it to server 
 
 `room.log` A typical cross-browser safe console logger
