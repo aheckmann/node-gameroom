@@ -1,15 +1,17 @@
 # Node-Gameroom
 My basic starter kit for creating realtime web-based games with nodejs.
 
-Includes
-- Bugs - this is alpha baby!
-- Express for handling your sites content
-- Socket.io for mananging your games realtime events and data
-- jQuery
-- Tiny client-side helper lib to simplify encoding/decoding and message passing
+  Includes
 
-Excludes
-- Any database support. The choice is yours.
+  - Bugs - this is alpha baby!
+  - Express for handling your sites content
+  - Socket.io for mananging your games realtime events and data
+  - jQuery
+  - Tiny client-side helper lib to simplify encoding/decoding and message passing
+
+  Excludes
+
+  - Any database support. The choice is yours.
 
 
 ## Serverside
