@@ -20,16 +20,19 @@ My basic starter kit for creating realtime web-based games with nodejs.
 
 ## Clientside
 
-There is a global room object you can use to send events back to the server
-and notify the other players etc.
+There is a global `room` object you use to send/recieve events from the server
+to notify other players etc.
 
-room.send(message) Encodes message and sends it to server 
+`room.send(message)` Encodes message and sends it to server 
 
-room.log A typical safe cross-browser logger
+`room.log` A typical cross-browser safe console logger
 
-room.doc A cached referrence to jQuery(document)
+`room.doc` A cached referrence to `jQuery(document)`
 
-Received messages are auto decoded and triggered on document so you can simply bind to them: jQuery(document).bind("gamestart", fn)
+Received messages are auto decoded and triggered on document so you can simply bind to them: 
+    jQuery(document).bind("gamestart", function(event, arg1, arg2, ...){
+      room.log(arguments)
+    })
 
 
 ## Events
@@ -38,16 +41,16 @@ There are a number of Node-Gameroom provided events to help you get your games s
 
   - Client-side events
     - gameplayerid(uid) 
-      - uid: unique id of the current player
+      - uid: unique id of the current player (you)
     - gamejoin(uid, totalPlayers)
       - uid: unique id of player that just joined (could be same as gameplayerid)
       - totalPlayers: total number of players in the gameroom
     - gamecountdown(count)
-      - count: (int)
-    - gamestart
+      - count: (int) If you specify a countdown on the server, all clients are notified each second: (10, 9, 8, ...) This is useful if you need your players to wait a certain amount of time before the game starts.
+    - gamestart - Signals the start of the game.
     - gametimer(timer)
-      - timer: (int) sent once per second
-    - gameover
+      - timer: (int) Sent once per second along with the number of seconds left in the game.
+    - gameover - Auto sent when the gametimer runs out or whenever you want. Ends the game.
 
   - Server-side events
     - // ...
