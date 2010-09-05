@@ -56,7 +56,7 @@ There are a number of Node-Gameroom provided events to help you get your games s
     - // ...
 
 
-If you want to track the number of players in a gameroom, just listen for the `gamejoin` event. Every player that joins
+If you want to track the number of players in a gameroom, just listen for the `gamejoin` event. When a player joins (including yourself) the `gamejoin` event fires on the client passing along the uid of each player in the gameroom as seperate args. Just use `arguments.length - 1`.
 
 ## License 
 
