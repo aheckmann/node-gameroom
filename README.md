@@ -39,7 +39,7 @@ Encodes message and sends it to server
 A typical cross-browser safe console logger
 
 **room.bind(name, fn)** 
-Registers an event handler (`fn`) for the given event `name`. Name can be either a single event name or a space seperated list of event names to which `fn` is bound. The name of the event is always the first argument passed to the handler.
+Registers an event handler (`fn`) for the given event `name`. Name can be either a single event name or a space seperated list of event names to which `fn` is bound.
     room.bind("something-neat", function(eventName, color, amount){
       room.log(eventName + " happened. I saw " + amount + " " + color + " cats skydiving!")
     })
@@ -79,6 +79,8 @@ If you want to track the number of players in a gameroom, just listen for the `g
     room.bind("gamejoin", function(event, id1, id2, ...){
       room.log("There are " + arguments.length - 1 + " players in the game room")
     })
+    
+See the [demo](http://github.com/aheckmann/node-gameroom/blob/master/views/room.jade) for another example of event handling.
 
 ## License 
 
