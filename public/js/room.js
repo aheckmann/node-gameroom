@@ -5,6 +5,16 @@
   var global = window
     , room = global.room = {}
 
+  // generate internal uids
+  var gnid = (function(uid){ 
+    return function(){
+      return ++uid + "_" + new Date
+    }
+  })(0)
+
+  // event register
+  var evts = room.evts = {}
+
   var socket = room.socket = new io.Socket(location.hostname)
   socket.connect()
   socket.on("message", function(message){
@@ -168,6 +178,15 @@
       handlers[len].apply(room, [name].concat(args))
   }
  
+
+  // - helpers
+
+  // cross browser happiness
+  room.log = console && "function" == typeof console.log
+    ? function(){ console.log.apply(console, arguments) }
+    : function(){}
+
+
   // the flash transport whines if sending msgs too fast
   // but we seem to be able to safely ignore those
   if (console && "function" == typeof console.error){
@@ -178,10 +197,5 @@
       __err(err)
     }
   }
-
-  // cross browser happiness
-  room.log = console && "function" == typeof console.log
-    ? function(){ console.log.apply(console, arguments) }
-    : function(){}
 
 })(io, Object.prototype.toString)
