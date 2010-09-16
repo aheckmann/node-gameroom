@@ -6,7 +6,6 @@ My basic starter kit for creating realtime web-based games with nodejs.
   - Bugs - this is alpha baby!
   - Express for handling your sites content
   - Socket.io for mananging your games realtime events and data
-  - jQuery
   - Tiny client-side helper lib to simplify encoding/decoding and message passing (no JSON which is slow IMO)
 
   Excludes
@@ -35,10 +34,8 @@ to notify other players etc.
 
 `room.log` A typical cross-browser safe console logger
 
-`room.doc` A cached referrence to `jQuery(document)`
-
 Received messages are auto decoded and triggered on document so you can simply bind to them: 
-    jQuery(document).bind("gamestart", function(event, arg1, arg2, ...){
+    room.bind("gamestart", function(event, arg1, arg2, ...){
       room.log(arguments)
     })
 

@@ -3,9 +3,11 @@ p Open me in two browser windows.
 #log
 script
   | ;(function(){
-  |   var log = $("#log");
-  |   jQuery(document).bind("gameplayerid gamejoin gamecountdown gamestart gametimer gameover", function(event){ 
-  |     log.prepend("<div><b>"+ event.type + "</b>: " + Array.prototype.slice.call(arguments, 1).join(", ") + "</div>") 
+  |   var log = document.getElementById("log");
+  |   room.bind("gameplayerid gamejoin gamecountdown gamestart gametimer gameover", function(eventType){ 
+  |     var div = document.createElement("div");
+  |     div.innerHTML = "<b>"+ eventType + "</b>: " + Array.prototype.slice.call(arguments, 1).join(", "); 
+  |     log.appendChild(div);
   |   });
   |   room.join()
   | })()
