@@ -8,6 +8,7 @@
   var socket = room.socket = new io.Socket(location.hostname)
   socket.connect()
   socket.on("message", function(message){
+    // decode message and trigger events.
     // we don't use JSON.parsing, it's too slow
     // Emit all sent events with room.trigger()
     var msg = message.split("|")
@@ -19,11 +20,29 @@
     }
   })
 
-  // skip json.stringify and use custom format
-  // more restricted but faster. IMO, speed wins the
-  // debate for realtime solutions
-  // { event: [array of args], event: [array of args] }
-  // "EVENT_NAME#arg1,arg2,arg3,..|EVENT_NAME|..."
+  /**
+   * Encodes and sends events and their arguments to the server
+   *
+   * We're not using JSON.stringify which limits the type of data we
+   * can send but we get speed gains necessary for real time games.
+   *
+   * Example:
+   *
+   *    room.send(
+   *    { "jump": [200, 430, 0.43266]
+   *    , "say": "how's it going?"
+   *    })
+   *
+   *    // other players will receive two events, `jump` and `say`
+   *    // which are triggered on `room`.
+   *    room.trigger("jump", [200, 430, 0.43266])
+   *    room.trigger("say", ["how's it going?"])
+   *
+   * @param {object} events
+   * @return undefined
+   *
+   */
+
   room.send = function(events){
     if (!events) return
     var encoded = ""
@@ -34,24 +53,39 @@
     socket.send(encoded)
   }
 
-  // tell the server we'd like to join a game room
+  /**
+   * Tells the server we'd like to join a gameroom.
+   *
+   * @return undefined
+   *
+   */
+
   room.join = function(){
-    // yes, socket.send not room.send. once joined, then room.send is always used.
-    // todo, clean that up
     socket.send("join")
   }
 
-  // generate uids
-  var gnid = (function(uid){ 
-    return function(){
-      return ++uid + "_" + new Date
-    }
-  })(0)
+  /**
+   * Binds event listeners
+   *
+   * Events arriving from the server will trigger the
+   * handlers registered with `room.bind()`
+   *
+   * `names` is an event name or space seperated list of
+   * event names to which `handler` will be bound.
+   *
+   * Example:
+   *
+   *    // fn will be bound to both jump and say events
+   *    room.bind("jump say", function(eventName){
+   *      room.log(eventName)
+   *    })
+   *
+   * @param {String} names
+   * @param {Function} handler
+   * @returns undefined
+   *
+   */
 
-  // register a handler for events pushed down from the server
-  var evts = room.evts = {}
-
-  // bind a listener for server sent events
   room.bind = function(names, handler){
     if (!(names && handler)) return
 
@@ -68,11 +102,28 @@
     }
   }
 
-  // unregister handlers 
-  // `names` is a space seperated string of event names
-  // fn is a function to unregister - if omitted removes all handlers for given event name
-  // unbind(name) - unregister all handlers for name
-  // unbind(name, fn) - unregister fn from name
+  /**
+   * Removes event listeners
+   *
+   * The inverse of `room.bind()`. 
+   *
+   * `names` is an event name or space seperated list of
+   * event names from which `fn` should be removed.
+   *
+   * `fn` is the function to remove. If `fn` is not passed
+   * all listeners for the specified event name(s) are removed.
+   *
+   * Example:
+   *    
+   *    room.unbind("jump say") // all listeners to these two events are removed
+   *    room.unbind("jump", func) // only func stops listening to "jump"
+   *
+   * @param {String} names
+   * @param {Function} fn
+   * @returns undefined
+   *
+   */
+
   room.unbind = function(names, fn){
     var events = names.split(" ")
       , len = events.length
@@ -98,7 +149,15 @@
     }
   }
 
-  // fire a `name` event with arguments `args`
+  /**
+   * Fires event `name` with the given `args`
+   *
+   * @param {String} name
+   * @param {Array} args
+   * @returns undefined
+   *
+   */
+
   room.trigger = function(name, args){
     if (!(name && args && evts[name])) return
     
