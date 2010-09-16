@@ -25,7 +25,7 @@ Then navigate to `http://0.0.0.0/` and click Play.
 
 ## Clientside
 
-There is a global `room` object you use to send/recieve events from the server
+There is a global `room` object you use to send/receive events from the server
 to notify other players etc.
 
 **room.join()** 
