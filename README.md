@@ -44,21 +44,12 @@ Binds `fn` to event `names`. Names can be either a single event name or a space 
     })
     room.trigger("something-neat", ["blue", 99]) ->  "something-neat happened. I saw 99 blue cats skydiving!"
 
-<br>
-
 **room.unbind(names, fn)** 
 The inverse of `room.bind`.
 
 **room.trigger(name, args)** 
 Executes all bound fns for event `name` passing in `args`. `args` must be an array.
     room.trigger("wackamole", ["you", "know", "you", "wish", "you", "could"])
-
-<br>
-
-Received messages are auto decoded and triggered on `room` so you can simply bind to them: 
-    room.bind("gamestart", function(event, arg1, arg2, ...){
-      room.log(arguments)
-    })
 
 
 ## Events
@@ -83,6 +74,10 @@ There are a number of Node-Gameroom provided events to help you get your games s
 
 
 If you want to track the number of players in a gameroom, just listen for the `gamejoin` event. When a player joins (including yourself) the `gamejoin` event fires on the client passing along the uid of each player in the gameroom as seperate args. Just use `arguments.length - 1`.
+
+    room.bind("gamejoin", function(event, id1, id2, ...){
+      room.log("There are " + arguments.length - 1 + " players in the game room")
+    })
 
 ## License 
 
