@@ -37,18 +37,18 @@ Encodes message and sends it to server
 **room.log**
 A typical cross-browser safe console logger
 
-**room.bind(names, fn)** 
-Binds `fn` to event `names`. Names can be either a single event name or a space seperated list of event names to which `fn` is bound. The name of the event is always the first argument passed.
+**room.bind(name, fn)** 
+Registers an event handler (`fn`) for the given event `name`. Name can be either a single event name or a space seperated list of event names to which `fn` is bound. The name of the event is always the first argument passed to the handler.
     room.bind("something-neat", function(eventName, color, amount){
       room.log(eventName + " happened. I saw " + amount + " " + color + " cats skydiving!")
     })
     room.trigger("something-neat", ["blue", 99]) ->  "something-neat happened. I saw 99 blue cats skydiving!"
 
-**room.unbind(names, fn)** 
+**room.unbind(name, fn)** 
 The inverse of `room.bind`.
 
 **room.trigger(name, args)** 
-Executes all bound fns for event `name` passing in `args` to each.
+Executes all bound handlers for event `name` passing in `args` to each.
     room.trigger("wackamole", ["you", "know", "you", "wish", "you", "could"])
 
 
