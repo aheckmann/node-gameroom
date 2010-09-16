@@ -28,24 +28,32 @@ Then navigate to `http://0.0.0.0/` and click Play.
 There is a global `room` object you use to send/recieve events from the server
 to notify other players etc.
 
-`room.join()` Joins a gameroom
+**room.join()** 
+Joins a gameroom
 
-`room.send(message)` Encodes message and sends it to server 
+**room.send(message)** 
+Encodes message and sends it to server 
 
-`room.log` A typical cross-browser safe console logger
+**room.log**
+A typical cross-browser safe console logger
 
-`room.bind(names, fn)` Binds `fn` to event `names`. Names can be either a single event name or a space seperated list of event names to which `fn` is bound. The name of the event is always the first argument passed.
+**room.bind(names, fn)** 
+Binds `fn` to event `names`. Names can be either a single event name or a space seperated list of event names to which `fn` is bound. The name of the event is always the first argument passed.
     room.bind("something-neat", function(eventName, color, amount){
       room.log(eventName + " happened. I saw " + amount + " " + color + " cats skydiving!")
     })
     room.trigger("something-neat", ["blue", 99]) ->  "something-neat happened. I saw 99 blue cats skydiving!"
 
+<br>
 
-`room.unbind(names, fn)` The inverse of `room.bind`.
+**room.unbind(names, fn)** 
+The inverse of `room.bind`.
 
-`room.trigger(name, args)` Executes all bound fns for event `name` passing in `args`. `args` must be an array.
+**room.trigger(name, args)** 
+Executes all bound fns for event `name` passing in `args`. `args` must be an array.
     room.trigger("wackamole", ["you", "know", "you", "wish", "you", "could"])
 
+<br>
 
 Received messages are auto decoded and triggered on `room` so you can simply bind to them: 
     room.bind("gamestart", function(event, arg1, arg2, ...){
