@@ -48,7 +48,7 @@ Binds `fn` to event `names`. Names can be either a single event name or a space 
 The inverse of `room.bind`.
 
 **room.trigger(name, args)** 
-Executes all bound fns for event `name` passing in `args`. `args` must be an array.
+Executes all bound fns for event `name` passing in `args` to each.
     room.trigger("wackamole", ["you", "know", "you", "wish", "you", "could"])
 
 
