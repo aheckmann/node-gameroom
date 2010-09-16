@@ -33,7 +33,7 @@ to notify other players etc.
 Joins a gameroom
 
 **room.send(message)** 
-Encodes message and sends it to server 
+Encodes message(s) and sends to server 
 
 **room.log**
 A typical cross-browser safe console logger
